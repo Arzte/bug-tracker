@@ -7,7 +7,23 @@ from django.shortcuts import render
 from django.shortcuts import reverse
 
 from homepage.forms import LoginForm
+from homepage.forms import TicketForm
 from homepage.models import Ticket
+
+
+@login_required
+def create_ticket_view(request):
+    if request.method == 'POST':
+        form = TicketForm(request.POST)
+        if form.is_valid():
+            form.save(commit=False)
+            form.created_by_id = request.user
+            form.save()
+            form.save_m2m()
+            return HttpResponseRedirect(reverse("homepage"))
+
+    form = TicketForm()
+    return render(request, 'generic_form.html', {'form': form})
 
 
 @login_required
