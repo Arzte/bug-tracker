@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Welcome!!<h1>
+    <h1>Welcome!!</h1>
+    <br>
+    {% include "table.partial" with title="New Tickets" tickets=tickets_new %}
+    <br>
+    {% include "table.partial" with title="In Progress Tickets" tickets=tickets_in_progress %}
+    <br>
+    {% include "table.partial" with title="Done Tickets" tickets=tickets_done %}
+    <br>
+    {% include "table.partial" with title="Invalid Tickets" tickets=tickets_invalid_tickets %}
+    <br>
+    <br>
+    <a href="logout/">Logout</a>
 {% endblock %}

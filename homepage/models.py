@@ -18,4 +18,4 @@ class Ticket(models.Model):
     status_choices = models.CharField(
         max_length=11, choices=TicketStatus.choices, default=TicketStatus.NEW)
     completed_by = models.OneToOneField(
-        MyUser, related_name='MyUser_as_Completed_by', on_delete=models.CASCADE)
+        MyUser, related_name='MyUser_as_Completed_by', on_delete=models.CASCADE, null=True, blank=True)

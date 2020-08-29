@@ -1,0 +1,13 @@
+<table class="table table-hover">
+   <tr>
+        <thead class="thead-dark">
+            <th colspan="2">{{ title }}</th>
+        </thead>
+    </tr>
+    {% for ticket in tickets %}
+        <tr>
+            <td>{{ ticket.title }}</td>
+            <td>{{ ticket.description }}</td>
+        </tr>
+    {% endfor %}
+</table>
