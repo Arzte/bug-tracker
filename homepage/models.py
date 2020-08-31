@@ -13,9 +13,13 @@ class Ticket(models.Model):
     title = models.CharField(max_length=20)
     date = models.DateTimeField(auto_now=True)
     description = models.TextField()
-    created_by = models.OneToOneField(
+    created_by = models.ForeignKey(
         MyUser, related_name='MyUser_as_Created_by', on_delete=models.CASCADE)
     status_choices = models.CharField(
         max_length=11, choices=TicketStatus.choices, default=TicketStatus.NEW)
-    completed_by = models.OneToOneField(
-        MyUser, related_name='MyUser_as_Completed_by', on_delete=models.CASCADE, null=True, blank=True)
+    assigned_to = models.ForeignKey(
+        MyUser, related_name='MyUser_as_Assigned_to', on_delete=models.CASCADE,
+        null=True, blank=True)
+    completed_by = models.ForeignKey(
+        MyUser, related_name='MyUser_as_Completed_by',
+        on_delete=models.CASCADE, null=True, blank=True)

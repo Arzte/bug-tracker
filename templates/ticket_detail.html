@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ ticket.title }}{% endblock %}
+
+{% block content %}
+            <h6><a href="{% url "homepage" %}">Home</a></h6>
+            <h5>{{ ticket.title }}</h5>
+            <a href="{% url "assign_user_to_ticket" ticket_id=ticket.id %}">Assign Ticket to Yourself</a>
+            <a href="{% url "mark_ticket_invalid" ticket_id=ticket.id %}">Mark Ticket as Invalid</a>
+            <a href="{% url "mark_ticket_done" ticket_id=ticket.id %}">Mark Ticket as Done</a>
+            <a href="{% url "edit_ticket_view" ticket_id=ticket.id %}">Edit Ticket</a>
+            <div>
+                <p>{{ ticket.description }}</p>
+            </div>
+            <ul class="list-group" style="width: 20rem;">
+                <li class="list-group-item"><b>Status:</b> {{ ticket.status_choices }}</li>
+                <li class="list-group-item"><b>Date:</b> {{ ticket.date }}</li>
+                <li class="list-group-item"><b>Reported By:</b> <a href="{% url "user_detail_view" user_id=ticket.created_by.id %}">{{ ticket.created_by }}</a></li>
+                <li class="list-group-item"><b>Assigned:</b> {{ ticket.assigned_to }}</li>
+            </ul>
+{% endblock %}

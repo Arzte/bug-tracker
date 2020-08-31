@@ -16,15 +16,31 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from homepage.views import assign_user_to_ticket
 from homepage.views import create_ticket_view
+from homepage.views import edit_ticket_view
 from homepage.views import homepage_view
 from homepage.views import login_view
 from homepage.views import logout_view
+from homepage.views import mark_ticket_done
+from homepage.views import mark_ticket_invalid
+from homepage.views import ticket_detail
+from homepage.views import user_detail_view
 
 urlpatterns = [
     path('login/', login_view, name='login_view'),
     path('logout/', logout_view, name='logout_view'),
     path('', homepage_view, name='homepage'),
     path('create_ticket/', create_ticket_view, name='create_ticket_view'),
+    path('ticket/<int:ticket_id>', ticket_detail, name='ticket_detail'),
+    path('ticket/<int:ticket_id>/assign',
+         assign_user_to_ticket, name='assign_user_to_ticket'),
+    path('ticket/<int:ticket_id>/invalid',
+         mark_ticket_invalid, name='mark_ticket_invalid'),
+    path('ticket/<int:ticket_id>/done',
+         mark_ticket_done, name='mark_ticket_done'),
+    path('ticket/<int:ticket_id>/edit',
+         edit_ticket_view, name='edit_ticket_view'),
+    path('user/<int:user_id>/', user_detail_view, name='user_detail_view'),
     path('admin/', admin.site.urls),
 ]

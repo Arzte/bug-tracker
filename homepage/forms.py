@@ -15,4 +15,4 @@ class LoginForm(forms.ModelForm):
 class TicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
-        fields = ['title', 'description', 'status_choices']
+        fields = ['title', 'description']

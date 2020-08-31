@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ ticket.title }}{% endblock %}
+
+{% block content %}
+            <h6><a href="{% url "homepage" %}">Home</a></h6>
+            <br>
+            <h2>{{ user.username }}</h2>
+            <br>
+            <br>
+            {% include "card.partial" with title="Assigned Tickets" tickets=assigned_tickets %}
+            <br>
+            {% include "card.partial" with title="Submitted Tickets" tickets=created_tickets %}
+            <br>
+            {% include "card.partial" with title="Completed Tickets" tickets=completed_tickets %}
+{% endblock %}
